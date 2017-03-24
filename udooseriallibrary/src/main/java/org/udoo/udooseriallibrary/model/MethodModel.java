@@ -28,7 +28,8 @@ public class MethodModel {
     }
 
     public static JSONObject AnalogReadBuilder(int pin) {
-        return BuilderPin("analogRead", pin, pin);
+        int id = 'a'+pin;
+        return BuilderPin("analogRead", pin, id);
     }
 
     private static JSONObject BuilderPinValue(String method, int pin, int value, int id) {
