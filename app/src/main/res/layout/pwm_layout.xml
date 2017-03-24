@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="32dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/ck_box3"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignTop="@id/ck_box3"
+                android:layout_alignBottom="@id/ck_box3"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Pin 3" />
+
+            <SeekBar
+                android:layout_below="@+id/ck_box3"
+                android:id="@+id/seekBar_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="360" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/ck_box5"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignTop="@id/ck_box5"
+                android:layout_alignBottom="@id/ck_box5"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Pin 5" />
+
+            <SeekBar
+                android:layout_below="@+id/ck_box5"
+                android:id="@+id/seekBar_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="360" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/ck_box6"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignTop="@id/ck_box6"
+                android:layout_alignBottom="@id/ck_box6"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Pin 6" />
+
+            <SeekBar
+                android:layout_below="@+id/ck_box6"
+                android:id="@+id/seekBar_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="360" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/ck_box9"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignTop="@id/ck_box9"
+                android:layout_alignBottom="@id/ck_box9"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Pin 9" />
+
+            <SeekBar
+                android:layout_below="@+id/ck_box9"
+                android:id="@+id/seekBar_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="360" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/ck_box10"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignTop="@id/ck_box10"
+                android:layout_alignBottom="@id/ck_box10"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Pin 10" />
+
+            <SeekBar
+                android:layout_below="@+id/ck_box10"
+                android:id="@+id/seekBar_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="360" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/ck_box11"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignTop="@id/ck_box11"
+                android:layout_alignBottom="@id/ck_box11"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Pin 11" />
+
+            <SeekBar
+                android:layout_below="@+id/ck_box11"
+                android:id="@+id/seekBar_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="360" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

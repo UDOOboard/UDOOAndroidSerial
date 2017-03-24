@@ -86,6 +86,7 @@ public class UdooSerialPort implements OnResult<JSONObject> {
                         final CountDownLatch callbackCountDown = new CountDownLatch(1);
 
                         mFileOutputStream.write(request.getBytes());
+                        mFileOutputStream.flush();
 
 //                        if (BuildConfig.DEBUG)
                             Log.i(TAG, "Linux write: " + request);
