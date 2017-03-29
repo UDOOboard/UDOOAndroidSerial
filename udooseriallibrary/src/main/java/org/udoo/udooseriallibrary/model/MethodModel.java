@@ -4,6 +4,7 @@ import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.udoo.udooseriallibrary.UdooASManager.INTERRUPT_MODE;
 
 /**
  * Created by harlem88 on 23/03/17.
@@ -41,6 +42,19 @@ public class MethodModel {
         }
         return json;
     }
+
+    public static JSONObject AttachInterrupt(int pin, INTERRUPT_MODE mode) {
+        int id = 'i'+pin;
+        JSONObject json = BuilderPin("attachInterrupt", pin, id);
+        try {
+            json.put("mode", mode.ordinal());
+            json.put("interrupt_id", id);
+        } catch (JSONException e) {
+            Log.e("BuilderAttachInt: ", e.getMessage());
+        }
+        return json;
+    }
+
 
     private static JSONObject BuilderPin(String method, int pin, int id) {
         JSONObject json = new JSONObject();

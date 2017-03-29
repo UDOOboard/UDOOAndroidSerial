@@ -26,6 +26,10 @@ public class UdooASManager {
     private SparseArray<Runnable> mRunnableNotCallback;
     private HandlerThread mSerialHandlerTh;
 
+    public enum DIGITAL_MODE   {INPUT, OUTPUT}
+    public enum DIGITAL_VALUE  {LOW, HIGH}
+    public enum INTERRUPT_MODE {NONE, PLACEHOLDER, CHANGE, RISING, FALLING}
+
     private UdooASManager(UdooSerialPort udooUdooSerialPort) {
         mUdooSerialPort = udooUdooSerialPort;
         mSerialHandlerTh = new HandlerThread("serial_handler");
@@ -44,20 +48,28 @@ public class UdooASManager {
         }
     }
 
+    public void setPinMode(int pin, DIGITAL_MODE mode) {
+        setPinMode(pin, mode.ordinal());
+    }
+
     public void digitalWrite(int pin, int value) {
         if (mUdooSerialPort != null) {
             mUdooSerialPort.write(MethodModel.DigitalWriteBuilder(pin, value), null);
         }
     }
 
-    public void digitalRead(int pin, final OnResult<Boolean> onResult) {
+    public void digitalWrite(int pin, DIGITAL_VALUE value) {
+        digitalWrite(pin, value.ordinal());
+    }
+
+    public void digitalRead(int pin, final OnResult<Integer> onResult) {
         if (mUdooSerialPort != null) {
             mUdooSerialPort.write(MethodModel.DigitalReadBuilder(pin), new OnResult<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject jsonObject) {
                     if (jsonObject != null && onResult != null) {
                         try {
-                            onResult.onSuccess(jsonObject.getInt("value") == 1);
+                            onResult.onSuccess(jsonObject.getInt("value"));
                         } catch (JSONException e) {
                             onResult.onError(new Throwable("Json parsing error"));
                         }
@@ -116,7 +128,29 @@ public class UdooASManager {
         }
     }
 
-    public void subscribeDigitalRead(final int pin,final int interval, final OnResult<Boolean> onResult){
+    public void attachInterrupt(int pin, INTERRUPT_MODE mode, final Callable<Void> callable) {
+        if (mUdooSerialPort != null) {
+            mUdooSerialPort.write(MethodModel.AttachInterrupt(pin, mode),null);
+            mUdooSerialPort.read('i'+pin, new OnResult<JSONObject>() {
+                @Override
+                public void onSuccess(JSONObject jsonObject) {
+                    if (jsonObject != null && callable != null) {
+                        try {
+                            callable.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+                }
+            });
+        }
+    }
+
+    public void subscribeDigitalRead(final int pin,final int interval, final OnResult<Integer> onResult){
         addNotifyToHandler(pin, interval, new Callable() {
             @Override
             public Object call() throws Exception {
