@@ -131,7 +131,7 @@ public class UdooASManager {
     public void attachInterrupt(int pin, INTERRUPT_MODE mode, final Callable<Void> callable) {
         if (mUdooSerialPort != null) {
             mUdooSerialPort.write(MethodModel.AttachInterrupt(pin, mode),null);
-            mUdooSerialPort.read('i'+pin, new OnResult<JSONObject>() {
+            mUdooSerialPort.read(MethodModel.GetInterruptId(pin), new OnResult<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject jsonObject) {
                     if (jsonObject != null && callable != null) {

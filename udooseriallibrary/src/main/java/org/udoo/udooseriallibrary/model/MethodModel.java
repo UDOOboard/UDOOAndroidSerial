@@ -44,7 +44,7 @@ public class MethodModel {
     }
 
     public static JSONObject AttachInterrupt(int pin, INTERRUPT_MODE mode) {
-        int id = 'i'+pin;
+        int id = GetInterruptId(pin);
         JSONObject json = BuilderPin("attachInterrupt", pin, id);
         try {
             json.put("mode", mode.ordinal());
@@ -54,7 +54,6 @@ public class MethodModel {
         }
         return json;
     }
-
 
     private static JSONObject BuilderPin(String method, int pin, int id) {
         JSONObject json = new JSONObject();
@@ -66,5 +65,9 @@ public class MethodModel {
             Log.e("BuilderPin: ", e.getMessage());
         }
         return json;
+    }
+
+    public static int GetInterruptId(int pin) {
+        return  'i'+pin;
     }
 }
