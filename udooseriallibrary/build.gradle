@@ -3,12 +3,11 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName '0.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -31,13 +30,55 @@ android {
             path "CMakeLists.txt"
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'udoo-android-serial'
+
+    publishedGroupId = 'org.udoo'
+    libraryName = 'udooandroidserial'
+    artifact = 'udooandroidserial'
+
+    libraryDescription = 'Library for control Arduino on the Udoo boards'
+
+    siteUrl = 'https://github.com/UDOOboard/UDOOAndroidSerial'
+    gitUrl = 'https://github.com/UDOOboard/UDOOAndroidSerial.git'
+
+    libraryVersion = android.defaultConfig.versionName
+    developerId = 'udooboard'
+    developerName = 'udooboard'
+
+    developerEmail = 'social@udoo.org'
+
+    licenseName = 'GNU General Public License v3.0'
+
+    licenseUrl = 'https://opensource.org/licenses/gpl-3.0.html'
+    allLicenses = ["GPL-3.0"]
+}
+
+apply from : '../install.gradle'
+apply from : '../bintray.gradle'
+
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('build/outputs/')
+    include('classes.jar')
+    rename ('classes.jar', 'udoo-android-serial.jar')
+    into('release/') //you can change this directory where you want to copy your .jar
+}
+task clearJar(type: Delete) {
+    delete 'build/libs/udoo-android-serial.jar'
+}
+
