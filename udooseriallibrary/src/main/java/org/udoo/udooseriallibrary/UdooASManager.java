@@ -1,5 +1,6 @@
 package org.udoo.udooseriallibrary;
 
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
@@ -205,7 +206,11 @@ public class UdooASManager {
     public static void Open(IReadyManager iReadyManager) {
         if (sUdooASManager == null) {
             try {
-                sUdooASManager = new UdooASManager(new UdooSerialPort("/dev/ttyMCC", 115200, 0));
+                if (Build.MODEL.equals("UDOONEO-MX6SX")) {
+                    sUdooASManager = new UdooASManager(new UdooSerialPort("/dev/ttyMCC", 115200, 0));
+                }else{
+                    sUdooASManager = new UdooASManager(new UdooSerialPort("/dev/ttymxc3", 115200, 0));
+                }
 
             } catch (IOException e) {
                 Log.e(TAG, "Open: " + e.getMessage());
