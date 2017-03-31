@@ -1,1 +1,1 @@
-include ':app', ':udooseriallibrary'
+include ':app', ':udooandroidserial'

@@ -47,6 +47,7 @@ bintray {
         licenses = allLicenses
         publish = true
         publicDownloadNumbers = true
+        labels = ['aar', 'android', 'serial']
         version {
             desc = libraryDescription
             gpg {

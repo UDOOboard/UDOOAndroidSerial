@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 25
-        versionCode 1
-        versionName '0.1'
+        versionCode 2
+        versionName '0.2'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -70,15 +70,4 @@ ext {
 
 apply from : '../install.gradle'
 apply from : '../bintray.gradle'
-
-task makeJar(type: Copy) {
-    from('build/intermediates/bundles/release/')
-    into('build/outputs/')
-    include('classes.jar')
-    rename ('classes.jar', 'udoo-android-serial.jar')
-    into('release/') //you can change this directory where you want to copy your .jar
-}
-task clearJar(type: Delete) {
-    delete 'build/libs/udoo-android-serial.jar'
-}
 

@@ -1,4 +1,4 @@
-package org.udoo.udooseriallibrary;
+package org.udoo.udooandroidserial;
 
 import org.junit.Test;
 

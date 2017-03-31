@@ -10,9 +10,9 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 
 import org.udoo.udooserial.databinding.MainBinding;
-import org.udoo.udooseriallibrary.OnResult;
-import org.udoo.udooseriallibrary.UdooASManager;
-import org.udoo.udooseriallibrary.UdooASManager.INTERRUPT_MODE;
+import org.udoo.udooandroidserial.OnResult;
+import org.udoo.udooandroidserial.UdooASManager;
+import org.udoo.udooandroidserial.UdooASManager.INTERRUPT_MODE;
 
 import java.util.concurrent.Callable;
 

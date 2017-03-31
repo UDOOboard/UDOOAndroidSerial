@@ -1,4 +1,4 @@
-package org.udoo.udooseriallibrary;
+package org.udoo.udooandroidserial;
 
 /**
  * Created by harlem88 on 17/03/16.

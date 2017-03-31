@@ -1,4 +1,4 @@
-package org.udoo.udooseriallibrary;
+package org.udoo.udooandroidserial;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

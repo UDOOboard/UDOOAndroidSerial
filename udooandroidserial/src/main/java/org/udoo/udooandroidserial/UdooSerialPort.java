@@ -1,4 +1,4 @@
-package org.udoo.udooseriallibrary;
+package org.udoo.udooandroidserial;
 
 import android.util.Log;
 import android.util.SparseArray;
@@ -131,6 +131,14 @@ public class UdooSerialPort implements OnResult<JSONObject> {
 
     public void read(int id, OnResult<JSONObject> callback){
         mReaderCallback.append(id, callback);
+    }
+
+    public void removeRead(int id){
+        if(mReaderCallback.indexOfKey(id) >= 0){
+            OnResult<JSONObject> jsonObjectOnResult = mReaderCallback.get(id);
+            mReaderCallback.remove(id);
+            jsonObjectOnResult = null;
+        }
     }
 
     // JNI

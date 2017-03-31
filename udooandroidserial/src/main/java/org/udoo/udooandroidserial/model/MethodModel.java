@@ -1,10 +1,10 @@
-package org.udoo.udooseriallibrary.model;
+package org.udoo.udooandroidserial.model;
 
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.udoo.udooseriallibrary.UdooASManager.INTERRUPT_MODE;
+import org.udoo.udooandroidserial.UdooASManager.INTERRUPT_MODE;
 
 /**
  * Created by harlem88 on 23/03/17.
@@ -53,6 +53,14 @@ public class MethodModel {
             Log.e("BuilderAttachInt: ", e.getMessage());
         }
         return json;
+    }
+
+    public static JSONObject DetachInterruptBuilder(int pin){
+        return BuilderPin("detachInterrupt", pin, pin);
+    }
+
+    public static JSONObject DisconnectBuilder(){
+        return BuilderPin("disconnect", 0, 0);
     }
 
     private static JSONObject BuilderPin(String method, int pin, int id) {

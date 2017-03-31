@@ -1,4 +1,4 @@
-package org.udoo.udooseriallibrary.model;
+package org.udoo.udooandroidserial.model;
 
 import android.util.Log;
 
