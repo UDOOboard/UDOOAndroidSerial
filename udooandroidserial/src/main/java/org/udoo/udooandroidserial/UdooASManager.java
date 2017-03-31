@@ -402,6 +402,7 @@ public class UdooASManager {
 
     public void close() {
         if (mUdooSerialPort != null) {
+            disconnect();
             mUdooSerialPort.close();
             sUdooASManager = null;
             mUdooSerialPort = null;
