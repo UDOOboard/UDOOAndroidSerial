@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
     private UdooASManager mUdooASManager;
     private MainBinding mViewBinding;
     private Handler mUiHandler;
+    private String TAG = "MainActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,9 +34,8 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
+    protected void onStart() {
+        super.onStart();
         UdooASManager.Open(new UdooASManager.IReadyManager() {
             @Override
             public void onReadyASManager(final UdooASManager udooASManager) {
@@ -45,10 +45,9 @@ public class MainActivity extends Activity {
         });
     }
 
-
     private void setListener(){
-        //mUdooASManager.servoAttach(3);
-        /*mUdooASManager.subscribeAnalogRead(0, 2000, new OnResult<Integer>() {
+        mUdooASManager.servoAttach(3);
+        mUdooASManager.subscribeAnalogRead(0, 2000, new OnResult<Integer>() {
             @Override
             public void onSuccess(final Integer value) {
                 mUiHandler.post(new Runnable() {
@@ -61,7 +60,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onError(Throwable throwable) {}
-        });*/
+        });
 
         mViewBinding.pwm.ckBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -85,20 +84,41 @@ public class MainActivity extends Activity {
             }
         });
 
-        mUdooASManager.attachInterrupt(0, INTERRUPT_MODE.CHANGE, blink());
+        mViewBinding.digital.d2IntCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) mUdooASManager.attachInterrupt(2, INTERRUPT_MODE.CHANGE, d2_interrupt());
+                else mUdooASManager.detachInterrupt(2);
+            }
+        });
+
+        mUdooASManager.subscribeLightBrickRead(0, 5000, new OnResult<int[]>() {
+            @Override
+            public void onSuccess(final int[] values) {
+                mUiHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mViewBinding.bricks.lightValues.setText(values.toString());
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Throwable throwable) {}
+        });
     }
 
-    public Callable<Void> blink(){
+    public Callable<Void> d2_interrupt(){
         return new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                mUdooASManager.digitalRead(0, new OnResult<Integer>() {
+                mUdooASManager.digitalRead(2, new OnResult<Integer>() {
                     @Override
                     public void onSuccess(final Integer o) {
                         mUiHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                mViewBinding.digital.d0IntValue.setText(o.toString());
+                                mViewBinding.digital.d2IntValue.setText(o.toString());
                             }
                         });
                     }
@@ -115,8 +135,8 @@ public class MainActivity extends Activity {
 
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         mUdooASManager.servoDetach(3);
         if (mUdooASManager != null)
             mUdooASManager.close();

@@ -19,6 +19,9 @@
             android:id="@+id/pwm"
             layout="@layout/pwm_layout" />
 
+        <include
+            android:id="@+id/bricks"
+            layout="@layout/bricks_layout" />
 
     </LinearLayout>
 </layout>

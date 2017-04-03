@@ -280,24 +280,47 @@
             android:layout_marginTop="15dp" />
 
         <TextView
-            android:id="@+id/d0_int_name"
+            android:id="@+id/d2_int_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="D0"
-            android:layout_marginTop="11dp"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/interrupts_textView"
-            android:layout_alignParentStart="true" />
+            android:layout_marginTop="11dp"
+            android:text="D2 -" />
 
         <TextView
-            android:id="@+id/d0_int_value"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/d2_int_value"
+            android:layout_toEndOf="@+id/d2_int_name"
+            android:text="AttachInterrupt" />
+
+        <TextView
+            android:id="@+id/d2_int_value"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:background="#c4c4c4"
-            android:layout_alignBaseline="@+id/d0_int_name"
-            android:layout_alignBottom="@+id/d0_int_name"
-            android:layout_toEndOf="@+id/d0_int_name" />
+            android:layout_below="@+id/d2_int_name"
+            android:layout_toEndOf="@+id/textView2"
+            android:layout_marginTop="11dp" />
 
+        <CheckBox
+            android:id="@+id/d2_int_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_toEndOf="@+id/textView" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Value"
+            android:layout_alignBaseline="@+id/d2_int_value"
+            android:layout_alignBottom="@+id/d2_int_value"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 </layout>
