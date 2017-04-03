@@ -181,16 +181,16 @@ public class UdooASManager {
         readTemperatureHumidity(SensorModel.DHT22ReaderBuilder(pin), onResult);
     }
 
-    public void humidityBrickRead(int pin, final OnResult<float[]> onResult) {
-        readTemperatureHumidity(SensorModel.HUMIDITYBRICKReaderBuilder(pin), onResult);
+    public void humidityBrickRead( final OnResult<float[]> onResult) {
+        readTemperatureHumidity(SensorModel.HUMIDITYBRICKReaderBuilder(), onResult);
     }
 
     /**
      * * @param onResult [0] visible [1] ir [2] full
      */
-    public void lightBrickRead(int pin, final OnResult<int[]> onResult){
+    public void lightBrickRead(final OnResult<int[]> onResult){
         if (mUdooSerialPort != null) {
-            mUdooSerialPort.write(SensorModel.LIGHTBRICKReaderBuilder(pin), new OnResult<JSONObject>() {
+            mUdooSerialPort.write(SensorModel.LIGHTBRICKReaderBuilder(), new OnResult<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject jsonObject) {
                     if (jsonObject != null && onResult != null) {
@@ -293,26 +293,26 @@ public class UdooASManager {
         }
     }
 
-    public void subscribeHumidityBrickRead(final int pin,final int interval, final OnResult<float[]> onResult){
-        int id = SensorModel.GetId(SensorModel.HUMIDITYBRICKReaderBuilder(pin));
+    public void subscribeHumidityBrickRead(final int interval, final OnResult<float[]> onResult){
+        int id = SensorModel.GetId(SensorModel.HUMIDITYBRICKReaderBuilder());
         if(id >= 0){
             addNotifyToHandler(id, interval, new Callable() {
                 @Override
                 public Object call() throws Exception {
-                    humidityBrickRead(pin, onResult);
+                    humidityBrickRead(onResult);
                     return null;
                 }
             });
         }
     }
 
-    public void subscribeLightBrickRead(final int pin, final int interval, final OnResult<int[]> onResult){
-        int id = SensorModel.GetId(SensorModel.LIGHTBRICKReaderBuilder(pin));
+    public void subscribeLightBrickRead(final int interval, final OnResult<int[]> onResult){
+        int id = SensorModel.GetId(SensorModel.LIGHTBRICKReaderBuilder());
         if(id >= 0){
             addNotifyToHandler(id, interval, new Callable() {
                 @Override
                 public Object call() throws Exception {
-                    lightBrickRead(pin, onResult);
+                    lightBrickRead(onResult);
                     return null;
                 }
             });
@@ -328,29 +328,29 @@ public class UdooASManager {
         removeNotifyFromHandler(id);
     }
 
-    public void unsubscribeDHT11Read(final int pin,final int interval, final OnResult<float[]> onResult){
+    public void unsubscribeDHT11Read(final int pin){
         int id = SensorModel.GetId(SensorModel.DHT11ReaderBuilder(pin));
         if(id >= 0){
             removeNotifyFromHandler(id);
         }
     }
 
-    public void unsubscribeDHT22Read(final int pin, final int interval, final OnResult<float[]> onResult){
+    public void unsubscribeDHT22Read(final int pin){
         int id = SensorModel.GetId(SensorModel.DHT22ReaderBuilder(pin));
         if(id >= 0){
             removeNotifyFromHandler(id);
         }
     }
 
-    public void unsubscribeHumidityBrickRead(final int pin,final int interval, final OnResult<float[]> onResult){
-        int id = SensorModel.GetId(SensorModel.HUMIDITYBRICKReaderBuilder(pin));
+    public void unsubscribeHumidityBrickRead(){
+        int id = SensorModel.GetId(SensorModel.HUMIDITYBRICKReaderBuilder());
         if(id >= 0){
             removeNotifyFromHandler(id);
         }
     }
 
-    public void unsubscribeLightBrickRead(final int pin, final int interval, final OnResult<int[]> onResult){
-        int id = SensorModel.GetId(SensorModel.LIGHTBRICKReaderBuilder(pin));
+    public void unsubscribeLightBrickRead(){
+        int id = SensorModel.GetId(SensorModel.LIGHTBRICKReaderBuilder());
         if(id >= 0){
             removeNotifyFromHandler(id);
         }

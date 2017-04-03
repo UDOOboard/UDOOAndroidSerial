@@ -30,12 +30,12 @@ public class SensorModel {
         return json;
     }
 
-    public static JSONObject HUMIDITYBRICKReaderBuilder(int pin) {
+    public static JSONObject HUMIDITYBRICKReaderBuilder() {
         return Builder("HUMIDITY_BRICK", 2);
     }
 
 
-    public static JSONObject LIGHTBRICKReaderBuilder(int pin) {
+    public static JSONObject LIGHTBRICKReaderBuilder() {
         return Builder("LIGHT_BRICK", 3);
     }
 

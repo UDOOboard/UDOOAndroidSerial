@@ -95,10 +95,10 @@ public class UdooSerialPort implements OnResult<JSONObject> {
                             @Override
                             public void onSuccess(JSONObject o) {
                                 if (!mIsCallbackCalled.get()) {
+                                    mIsCallbackCalled.set(true);
                                     if (callback != null) {
                                         callback.onSuccess(o);
                                     }
-                                    mIsCallbackCalled.set(true);
                                     callbackCountDown.countDown();
                                 }
                             }
@@ -130,13 +130,13 @@ public class UdooSerialPort implements OnResult<JSONObject> {
     }
 
     public void read(int id, OnResult<JSONObject> callback){
-        mReaderCallback.append(id, callback);
+        mReaderCallback.put(id, callback);
     }
 
     public void removeRead(int id){
         if(mReaderCallback.indexOfKey(id) >= 0){
             OnResult<JSONObject> jsonObjectOnResult = mReaderCallback.get(id);
-            mReaderCallback.remove(id);
+            mReaderCallback.delete(id);
             jsonObjectOnResult = null;
         }
     }

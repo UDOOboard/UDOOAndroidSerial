@@ -102,11 +102,11 @@ static speed_t getBaudrate(jint baudrate) {
 }
 
 /*
- * Class:     org_udoo_minicom_SerialPort
+ * Class:     org_udoo_udooandroidserial_UdooSerialPort
  * Method:    open
  * Signature: (Ljava/lang/String;II)Ljava/io/FileDescriptor;
  */
-JNIEXPORT jobject JNICALL Java_org_udoo_udooseriallibrary_UdooSerialPort_open
+JNIEXPORT jobject JNICALL Java_org_udoo_udooandroidserial_UdooSerialPort_open
         (JNIEnv *env, jclass thiz, jstring path, jint baudrate, jint flags) {
     int fd;
     speed_t speed;
@@ -179,11 +179,11 @@ JNIEXPORT jobject JNICALL Java_org_udoo_udooseriallibrary_UdooSerialPort_open
 }
 
 /*
- * Class:     org_udoo_minicom_SerialPort
+ * Class:     org_udoo_udooandroidserial_UdooSerialPort
  * Method:    close
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_org_udoo_udooseriallibrary_UdooSerialPort_close
+JNIEXPORT void JNICALL Java_org_udoo_udooandroidserial_UdooSerialPort_close
         (JNIEnv *env, jobject thiz) {
     jclass SerialPortClass = (*env)->GetObjectClass(env, thiz);
     jclass FileDescriptorClass = (*env)->FindClass(env, "java/io/FileDescriptor");
