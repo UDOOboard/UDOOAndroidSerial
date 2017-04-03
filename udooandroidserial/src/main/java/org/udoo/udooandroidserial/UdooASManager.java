@@ -1,4 +1,4 @@
-package org.udoo.udooseriallibrary;
+package org.udoo.udooandroidserial;
 
 import android.os.Build;
 import android.os.Handler;
@@ -8,8 +8,9 @@ import android.util.SparseArray;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.udoo.udooseriallibrary.model.MethodModel;
-import org.udoo.udooseriallibrary.model.ServoModel;
+import org.udoo.udooandroidserial.model.MethodModel;
+import org.udoo.udooandroidserial.model.SensorModel;
+import org.udoo.udooandroidserial.model.ServoModel;
 
 import java.io.IOException;
 import java.util.concurrent.Callable;
@@ -131,6 +132,8 @@ public class UdooASManager {
 
     public void attachInterrupt(final int pin, INTERRUPT_MODE mode, final Callable<Void> callable) {
         if (mUdooSerialPort != null) {
+            if(mode == INTERRUPT_MODE.DEFAULT) mode = INTERRUPT_MODE.CHANGE;
+
             mUdooSerialPort.write(MethodModel.AttachInterrupt(pin, mode), new OnResult<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject o) {
@@ -147,16 +150,99 @@ public class UdooASManager {
                         }
 
                         @Override
-                        public void onError(Throwable throwable) {
-                        }
+                        public void onError(Throwable throwable) {}
                     });
                 }
                 @Override
-                public void onError(Throwable throwable) {
-
-                }
+                public void onError(Throwable throwable) {}
             });
 
+        }
+    }
+
+    public void detachInterrupt(int pin) {
+        if (mUdooSerialPort != null) {
+            mUdooSerialPort.write(MethodModel.DetachInterruptBuilder(pin),null);
+            mUdooSerialPort.removeRead(MethodModel.GetInterruptId(pin));
+        }
+    }
+
+    public void disconnect() {
+        if (mUdooSerialPort != null) {
+            mUdooSerialPort.write(MethodModel.DisconnectBuilder(),null);
+        }
+    }
+
+    public void dht11Read(int pin, final OnResult<float[]> onResult) {
+        readTemperatureHumidity(SensorModel.DHT11ReaderBuilder(pin), onResult);
+    }
+
+    public void dht22Read(int pin, final OnResult<float[]> onResult) {
+        readTemperatureHumidity(SensorModel.DHT22ReaderBuilder(pin), onResult);
+    }
+
+    public void humidityBrickRead( final OnResult<float[]> onResult) {
+        readTemperatureHumidity(SensorModel.HUMIDITYBRICKReaderBuilder(), onResult);
+    }
+
+    /**
+     * * @param onResult [0] visible [1] ir [2] full
+     */
+    public void lightBrickRead(final OnResult<int[]> onResult){
+        if (mUdooSerialPort != null) {
+            mUdooSerialPort.write(SensorModel.LIGHTBRICKReaderBuilder(), new OnResult<JSONObject>() {
+                @Override
+                public void onSuccess(JSONObject jsonObject) {
+                    if (jsonObject != null && onResult != null) {
+                        try {
+                            int[] values = new int[3];
+                            values[0] = jsonObject.getInt("visible");
+                            values[1] = jsonObject.getInt("ir");
+                            values[2] = jsonObject.getInt("full");
+                            onResult.onSuccess(values);
+                        } catch (JSONException e) {
+                            onResult.onError(new Throwable("Json parsing error"));
+                        }
+                    }
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+                    if (onResult != null) {
+                        onResult.onError(throwable);
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * * @param onResult [0] temperature , [1] humidity
+     */
+    private void readTemperatureHumidity(JSONObject readJson, final OnResult<float[]> onResult){
+        if (mUdooSerialPort != null) {
+            mUdooSerialPort.write(readJson, new OnResult<JSONObject>() {
+                @Override
+                public void onSuccess(JSONObject jsonObject) {
+                    if (jsonObject != null && onResult != null) {
+                        try {
+                            float[] values = new float[2];
+                            values[0] =(float) jsonObject.getDouble("temperature");
+                            values[1] =(float) jsonObject.getDouble("humidity");
+                            onResult.onSuccess(values);
+                        } catch (JSONException e) {
+                            onResult.onError(new Throwable("Json parsing error"));
+                        }
+                    }
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+                    if (onResult != null) {
+                        onResult.onError(throwable);
+                    }
+                }
+            });
         }
     }
 
@@ -181,6 +267,58 @@ public class UdooASManager {
         });
     }
 
+    public void subscribeDHT11Read(final int pin,final int interval, final OnResult<float[]> onResult){
+        int id = SensorModel.GetId(SensorModel.DHT11ReaderBuilder(pin));
+        if(id >= 0){
+            addNotifyToHandler(id, interval, new Callable() {
+                @Override
+                public Object call() throws Exception {
+                    dht11Read(pin, onResult);
+                    return null;
+                }
+            });
+        }
+    }
+
+    public void subscribeDHT22Read(final int pin, final int interval, final OnResult<float[]> onResult){
+        int id = SensorModel.GetId(SensorModel.DHT22ReaderBuilder(pin));
+        if(id >= 0){
+            addNotifyToHandler(id, interval, new Callable() {
+                @Override
+                public Object call() throws Exception {
+                    dht22Read(pin, onResult);
+                    return null;
+                }
+            });
+        }
+    }
+
+    public void subscribeHumidityBrickRead(final int interval, final OnResult<float[]> onResult){
+        int id = SensorModel.GetId(SensorModel.HUMIDITYBRICKReaderBuilder());
+        if(id >= 0){
+            addNotifyToHandler(id, interval, new Callable() {
+                @Override
+                public Object call() throws Exception {
+                    humidityBrickRead(onResult);
+                    return null;
+                }
+            });
+        }
+    }
+
+    public void subscribeLightBrickRead(final int interval, final OnResult<int[]> onResult){
+        int id = SensorModel.GetId(SensorModel.LIGHTBRICKReaderBuilder());
+        if(id >= 0){
+            addNotifyToHandler(id, interval, new Callable() {
+                @Override
+                public Object call() throws Exception {
+                    lightBrickRead(onResult);
+                    return null;
+                }
+            });
+        }
+    }
+
     public void unsubscribeDigitalRead(final int pin){
         removeNotifyFromHandler(pin);
     }
@@ -189,6 +327,35 @@ public class UdooASManager {
         int id = 'a'+pin;
         removeNotifyFromHandler(id);
     }
+
+    public void unsubscribeDHT11Read(final int pin){
+        int id = SensorModel.GetId(SensorModel.DHT11ReaderBuilder(pin));
+        if(id >= 0){
+            removeNotifyFromHandler(id);
+        }
+    }
+
+    public void unsubscribeDHT22Read(final int pin){
+        int id = SensorModel.GetId(SensorModel.DHT22ReaderBuilder(pin));
+        if(id >= 0){
+            removeNotifyFromHandler(id);
+        }
+    }
+
+    public void unsubscribeHumidityBrickRead(){
+        int id = SensorModel.GetId(SensorModel.HUMIDITYBRICKReaderBuilder());
+        if(id >= 0){
+            removeNotifyFromHandler(id);
+        }
+    }
+
+    public void unsubscribeLightBrickRead(){
+        int id = SensorModel.GetId(SensorModel.LIGHTBRICKReaderBuilder());
+        if(id >= 0){
+            removeNotifyFromHandler(id);
+        }
+    }
+
 
     private void addNotifyToHandler(final int id, int interval, final Callable call){
         if(interval < 50 ) interval = 50;
@@ -209,13 +376,12 @@ public class UdooASManager {
 
     private void removeNotifyFromHandler(int id){
         if(mRunnableNotCallback.indexOfKey(id) > -1) mHandlerNotify.removeCallbacks(mRunnableNotCallback.get(id));
+        mUdooSerialPort.removeRead(id);
     }
-
 
     public static void Open(IReadyManager iReadyManager) {
         if (sUdooASManager == null) {
             try {
-                Log.v("UdooASManager", "Open Serial Port - Build.MODEL: " + Build.MODEL);
                 if (Build.MODEL.equals("UDOONEO-MX6SX")) {
                     sUdooASManager = new UdooASManager(new UdooSerialPort("/dev/ttyMCC", 115200, 0));
                 } else if(Build.MODEL.equals("UDOO-MX6DQ")) {
@@ -236,6 +402,7 @@ public class UdooASManager {
 
     public void close() {
         if (mUdooSerialPort != null) {
+            disconnect();
             mUdooSerialPort.close();
             sUdooASManager = null;
             mUdooSerialPort = null;
