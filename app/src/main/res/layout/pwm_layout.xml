@@ -2,9 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_marginTop="82dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="32dp"
+        android:layout_marginLeft="24dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -14,13 +15,14 @@
             <CheckBox
                 android:id="@+id/ck_box3"
                 android:layout_width="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_alignTop="@id/ck_box3"
+                android:layout_alignParentEnd="true"
                 android:layout_alignBottom="@id/ck_box3"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="Pin 3" />
@@ -40,13 +42,14 @@
             <CheckBox
                 android:id="@+id/ck_box5"
                 android:layout_width="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_alignTop="@id/ck_box5"
                 android:layout_alignBottom="@id/ck_box5"
+                android:layout_alignParentEnd="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="Pin 5" />
@@ -66,13 +69,14 @@
             <CheckBox
                 android:id="@+id/ck_box6"
                 android:layout_width="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_alignTop="@id/ck_box6"
+                android:layout_alignParentEnd="true"
                 android:layout_alignBottom="@id/ck_box6"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="Pin 6" />
@@ -93,12 +97,13 @@
             <CheckBox
                 android:id="@+id/ck_box9"
                 android:layout_width="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_alignTop="@id/ck_box9"
+                android:layout_alignParentEnd="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:layout_alignBottom="@id/ck_box9"
                 android:gravity="center"
                 android:layout_height="wrap_content"
@@ -119,12 +124,13 @@
             <CheckBox
                 android:id="@+id/ck_box10"
                 android:layout_width="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:layout_alignTop="@id/ck_box10"
+                android:layout_alignParentEnd="true"
                 android:layout_alignBottom="@id/ck_box10"
                 android:gravity="center"
                 android:layout_height="wrap_content"
@@ -145,13 +151,14 @@
             <CheckBox
                 android:id="@+id/ck_box11"
                 android:layout_width="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_alignTop="@id/ck_box11"
                 android:layout_alignBottom="@id/ck_box11"
+                android:layout_alignParentEnd="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="Pin 11" />

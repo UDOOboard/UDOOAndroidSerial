@@ -5,11 +5,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:padding="4dp">
+        android:padding="16dp">
 
-        <include
-            android:id="@+id/analog"
-            layout="@layout/analog_layout" />
+
+        <LinearLayout
+            android:layout_width="145dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/analog"
+                layout="@layout/analog_layout" />
+
+            <include
+                android:id="@+id/bricks"
+                layout="@layout/bricks_layout" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:scaleType="fitEnd"
+                android:layout_marginBottom="24dp"
+                android:src="@drawable/ic_udoo_logo"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
         <include
             android:id="@+id/digital"
@@ -18,10 +36,5 @@
         <include
             android:id="@+id/pwm"
             layout="@layout/pwm_layout" />
-
-        <include
-            android:id="@+id/bricks"
-            layout="@layout/bricks_layout" />
-
     </LinearLayout>
 </layout>

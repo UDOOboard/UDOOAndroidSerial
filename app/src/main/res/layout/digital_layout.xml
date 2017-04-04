@@ -3,295 +3,38 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:orientation="vertical">
-
-
-        <RadioButton
-            android:id="@+id/d0_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp" />
-
-        <TextView
-            android:id="@+id/d0_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d0_value"
-            android:layout_alignTop="@id/d0_value"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="D0" />
-
-
-        <RadioButton
-            android:id="@+id/d9_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="88dp" />
-
-        <TextView
-            android:id="@+id/d9_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d9_value"
-            android:layout_alignTop="@id/d9_value"
-            android:layout_marginBottom="2dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/d0_value"
-            android:gravity="center"
-            android:text="D9  " />
-
-        <RadioButton
-            android:id="@+id/d1_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d0_value"
-            android:layout_marginStart="24dp" />
-
-        <TextView
-            android:id="@+id/d1_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d1_value"
-            android:layout_alignTop="@id/d1_value"
-            android:layout_below="@id/d0_value"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="D1" />
-
-        <RadioButton
-            android:id="@+id/d10_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d0_value"
-            android:layout_marginStart="88dp" />
-
-        <TextView
-            android:id="@+id/d10_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d10_value"
-            android:layout_alignTop="@id/d10_value"
-            android:layout_below="@id/d0_value"
-            android:layout_marginBottom="2dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/d1_value"
-            android:gravity="center"
-            android:text="D10" />
-
-        <RadioButton
-            android:id="@+id/d2_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d1_value"
-            android:layout_marginStart="24dp" />
-
-        <TextView
-            android:id="@+id/d2_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d2_value"
-            android:layout_alignTop="@id/d2_value"
-            android:layout_below="@id/d1_value"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="D2" />
-
-
-        <RadioButton
-            android:id="@+id/d11_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d1_value"
-            android:layout_marginStart="88dp" />
-
-        <TextView
-            android:id="@+id/d11_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d11_value"
-            android:layout_alignTop="@id/d11_value"
-            android:layout_below="@id/d1_value"
-            android:layout_marginBottom="2dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/d2_value"
-            android:gravity="center"
-            android:text="D11" />
-
-        <RadioButton
-            android:id="@+id/d3_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d2_value"
-            android:layout_marginStart="24dp" />
-
-        <TextView
-            android:id="@+id/d3_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d3_value"
-            android:layout_alignTop="@id/d3_value"
-            android:layout_below="@id/d2_value"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="D3" />
-
-
-        <RadioButton
-            android:id="@+id/d12_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d2_value"
-            android:layout_marginStart="88dp" />
-
-        <TextView
-            android:id="@+id/d12_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d12_value"
-            android:layout_alignTop="@id/d12_value"
-            android:layout_below="@id/d2_value"
-            android:layout_marginBottom="2dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/d2_value"
-            android:gravity="center"
-            android:text="D12" />
-
-        <RadioButton
-            android:id="@+id/d4_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d3_value"
-            android:layout_marginStart="24dp" />
-
-        <TextView
-            android:id="@+id/d4_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d4_value"
-            android:layout_alignTop="@id/d4_value"
-            android:layout_below="@id/d3_value"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="D4" />
-
-        <RadioButton
-            android:id="@+id/d13_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d3_value"
-            android:layout_marginStart="88dp" />
-
-        <TextView
-            android:id="@+id/d13_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d13_value"
-            android:layout_alignTop="@id/d13_value"
-            android:layout_below="@id/d3_value"
-            android:layout_marginBottom="2dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/d3_value"
-            android:gravity="center"
-            android:text="D13" />
-
-
-        <RadioButton
-            android:id="@+id/d5_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d4_value"
-            android:layout_marginStart="24dp" />
-
-        <TextView
-            android:id="@+id/d5_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d5_value"
-            android:layout_alignTop="@id/d5_value"
-            android:layout_below="@id/d4_value"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="D5" />
-
-        <RadioButton
-            android:id="@+id/d6_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d5_value"
-            android:layout_marginStart="24dp" />
-
-        <TextView
-            android:id="@+id/d6_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d6_value"
-            android:layout_alignTop="@id/d6_value"
-            android:layout_below="@id/d5_value"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="D6" />
-
-        <RadioButton
-            android:id="@+id/d7_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d6_value"
-            android:layout_marginStart="24dp" />
-
-        <TextView
-            android:id="@+id/d7_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d7_value"
-            android:layout_alignTop="@id/d7_value"
-            android:layout_below="@id/d6_value"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="D7" />
-
-        <RadioButton
-            android:id="@+id/d8_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/d7_value"
-            android:layout_marginStart="24dp" />
-
-        <TextView
-            android:id="@+id/d8_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/d8_value"
-            android:layout_alignTop="@id/d8_value"
-            android:layout_below="@id/d7_value"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="D8" />
 
         <TextView
             android:id="@+id/interrupts_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Interrupts"
-            android:layout_below="@+id/d8_value"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="15dp" />
+            android:textStyle="bold"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:text="Interrupts" />
 
         <TextView
             android:id="@+id/d2_int_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/interrupts_textView"
-            android:layout_marginTop="11dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
             android:text="D2 -" />
 
         <TextView
+
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:layout_above="@+id/d2_int_value"
             android:layout_toEndOf="@+id/d2_int_name"
             android:text="AttachInterrupt" />
@@ -300,10 +43,11 @@
             android:id="@+id/d2_int_value"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
-            android:background="#c4c4c4"
             android:layout_below="@+id/d2_int_name"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_marginTop="4dp"
             android:layout_toEndOf="@+id/textView2"
-            android:layout_marginTop="11dp" />
+            android:background="#c4c4c4" />
 
         <CheckBox
             android:id="@+id/d2_int_checkBox"
@@ -317,10 +61,19 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Value"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:layout_alignBaseline="@+id/d2_int_value"
             android:layout_alignBottom="@+id/d2_int_value"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="24dp"
+            android:text="Value: " />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_digital"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="8dp"
+            android:scrollbars="vertical" />
     </RelativeLayout>
 </layout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="digital"
+            type="org.udoo.udooserial.DigitalModel"/>
+        </data>
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            tools:text="D0"
+            android:textStyle="bold"
+            android:id="@+id/digital_name"
+            android:text="@{digital.name}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioGroup
+            android:id="@+id/rdgroup_digital"
+            android:layout_width="wrap_content"
+            app:mode="@{digital.mode}"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rd_btn_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="INPUT" />
+
+            <RadioButton
+                android:id="@+id/rd_btn_output"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OUTPUT" />
+        </RadioGroup>
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/digital_value"
+            android:checked="@{digital.value}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="2dp"
+            android:text="value"
+            android:textOff="0"
+            android:textOn="1"
+            app:showText="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="#c4c4c4"
+            android:layout_marginBottom="6dp"
+            android:layout_height="1dp"/>
+    </LinearLayout>
+</layout>
