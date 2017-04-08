@@ -88,6 +88,12 @@ public class UdooASManager {
         }
     }
 
+    public void analogWrite(int pin, int value) {
+        if (mUdooSerialPort != null) {
+            mUdooSerialPort.write(MethodModel.AnalogWriteBuilder(pin, value), null);
+        }
+    }
+
     public void analogRead(int pin, final OnResult<Integer> onResult) {
         if (mUdooSerialPort != null) {
             mUdooSerialPort.write(MethodModel.AnalogReadBuilder(pin), new OnResult<JSONObject>() {

@@ -15,7 +15,7 @@ Library for control Arduino on Udoo boards
            }
 
         dependencies {
-            compile 'org.udoo:udooandroidserial:0.2'
+            compile 'org.udoo:udooandroidserial:0.2.1'
         }
       
    2.Open arduino serial manager, and it is ready to return an UdooASManager object.
